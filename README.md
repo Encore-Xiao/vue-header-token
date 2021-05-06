@@ -1,1 +1,15 @@
 # vue-header-token
+// 调用该js在main.js上
+const MyAxios = axios.create({
+  transformRequest: [function (data) {
+    // 将数据转换为表单数据
+    let ret = ''
+    for (let it in data) {
+      ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+    }
+    return ret
+  }],
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+})
